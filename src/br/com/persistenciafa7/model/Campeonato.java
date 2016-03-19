@@ -29,6 +29,14 @@ public class Campeonato extends BaseModel {
 	@Basic(optional = false)
 	private Double premiacao;
 
+	public Campeonato(String nome, double premiacao) {
+		this.nome = nome;
+		this.premiacao = premiacao;
+	}
+	
+	public Campeonato() {
+	}
+
 	public Long getId() {
 		return id;
 	}

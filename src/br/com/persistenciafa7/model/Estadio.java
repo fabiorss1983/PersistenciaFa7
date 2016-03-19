@@ -36,6 +36,15 @@ public class Estadio extends BaseModel {
 	@Basic(optional = false)
 	private Cidade cidade;
 
+	public Estadio(String nome, int capacidade, Cidade cidade) {
+		this.nome = nome;
+		this.capacidade = capacidade;
+		this.cidade = cidade;
+	}
+	
+	public Estadio() {
+	}
+
 	public Long getId() {
 		return id;
 	}

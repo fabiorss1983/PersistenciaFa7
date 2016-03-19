@@ -32,6 +32,8 @@ public class Time extends BaseModel {
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="TIME_GEN")
 	private Long id;
 	
+	private String nome;
+	
 	@ManyToOne(fetch=FetchType.LAZY, optional=false)
 	@JoinColumn(name="cidade_id")
 	@Basic(optional = false)
@@ -45,6 +47,16 @@ public class Time extends BaseModel {
 	@JoinColumn(name="id_time")
 	private Collection<Pessoa> pessoas;
 	
+	public Time(String nome, Cidade cidade, Estadio estadio) {
+		this.nome = nome;
+		this.cidade = cidade;
+		this.estadio = estadio;
+	}
+	
+	public Time() {
+	}
+	
+
 	public Long getId() {
 		return id;
 	}
@@ -75,5 +87,13 @@ public class Time extends BaseModel {
 
 	public void setPessoas(Collection<Pessoa> pessoas) {
 		this.pessoas = pessoas;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 }

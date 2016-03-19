@@ -29,6 +29,12 @@ public class Jogador extends Pessoa {
 	@ManyToMany(fetch=FetchType.LAZY, mappedBy="jogadores")
 	private Collection<Partida> partidas;
 
+	public Jogador(String nome, String posicao, Time time) {
+		this.nome = nome;
+		this.posicao = posicao;
+		this.time = time;
+	}
+
 	public String getPosicao() {
 		return posicao;
 	}

@@ -1,8 +1,10 @@
 package br.com.persistenciafa7.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -23,10 +25,18 @@ public class Estado extends BaseModel {
 	@Basic(optional = false)
 	private String nome;
 	
-	@OneToMany(fetch=FetchType.LAZY, targetEntity=Cidade.class)
+	@OneToMany(fetch=FetchType.LAZY, targetEntity=Cidade.class, cascade=CascadeType.ALL)
 	@JoinColumn(name="sigla_estado")
 	private Collection<Cidade> cidades;
 	
+	public Estado(String nome, String sigla) {
+		this.nome = nome;
+		this.sigla = sigla;
+	}
+	
+	public Estado() {
+	}
+
 	public String getSigla() {
 		return sigla;
 	}
@@ -49,5 +59,12 @@ public class Estado extends BaseModel {
 
 	public void setCidades(Collection<Cidade> cidades) {
 		this.cidades = cidades;
+	}
+
+	public void addCidade(Cidade c) {
+		if(cidades == null) {
+			cidades = new ArrayList<Cidade>();
+		}
+		cidades.add(c);
 	}
 }

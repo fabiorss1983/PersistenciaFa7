@@ -19,13 +19,19 @@ public class Tecnico extends Pessoa {
 	private static final long serialVersionUID = -2253456016069161346L;
 	
 	@Basic(optional = false)
-	private String funcao;
+	private String especializacao;
 
-	public String getFuncao() {
-		return funcao;
+	public Tecnico(String nome, String especializacao, Time time) {
+		this.nome = nome;
+		this.especializacao = especializacao;
+		this.time = time;
 	}
 
-	public void setFuncao(String funcao) {
-		this.funcao = funcao;
+	public String getEspecializacao() {
+		return especializacao;
+	}
+
+	public void setEspecializacao(String especializacao) {
+		this.especializacao = especializacao;
 	}
 }

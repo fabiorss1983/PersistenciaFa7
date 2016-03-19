@@ -1,8 +1,10 @@
 package br.com.persistenciafa7.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -38,13 +40,21 @@ public class Cidade extends BaseModel {
 	@Basic(optional = false)
 	private Estado estado;
 
-	@OneToMany(mappedBy = "cidade", targetEntity = Time.class, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "cidade", targetEntity = Time.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	private Collection<Time> times;
 
-	@OneToMany(fetch=FetchType.LAZY)
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="id_cidade")
 	private Collection<Estadio> estadios;
 
+	public Cidade(String nome, Estado e) {
+		this.nome = nome;
+		this.estado = e;
+	}
+	
+	public Cidade() {
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -83,5 +93,13 @@ public class Cidade extends BaseModel {
 
 	public void setEstadios(Collection<Estadio> estadios) {
 		this.estadios = estadios;
+	}
+
+	public void addEstadio(Estadio estadio) {
+		if(estadios == null) {
+			estadios = new ArrayList<>();
+		}
+
+		estadios.add(estadio);
 	}
 }

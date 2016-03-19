@@ -35,16 +35,24 @@ public class Pessoa extends BaseModel {
 	private Long id;
 	
 	@Basic(optional = false)
-	private String nome;
+	protected String nome;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="data_nascimento")
-	private Date dataNascimento;
+	protected Date dataNascimento;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="id_time")
-	private Time time;
+	protected Time time;
 
+	public Pessoa(String nome, Time time) {
+		this.nome = nome;
+		this.time = time;
+	}
+
+	public Pessoa() {
+	}
+	
 	public Long getId() {
 		return id;
 	}

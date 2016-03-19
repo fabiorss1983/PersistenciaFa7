@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+	
+		<!-- Database connection settings -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/persistencia-fa7</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">mysql</property>
+
+		<!-- JDBC connection pool (use the built-in) -->
+		<property name="connection.pool_size">1</property>
+
+		<!-- SQL dialect -->
+		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+
+		<!-- Enable Hibernate's automatic session context management -->
+		<property name="current_session_context_class">thread</property>
+
+		<!-- Disable the second-level cache -->
+		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+		<!-- Echo all executed SQL to stdout -->
+		<property name="show_sql">true</property>
+
+		<!-- Drop and re-create the tables of schema on startup -->
+		<property name="hbm2ddl.auto">create</property>
+
+		<mapping class="br.com.persistenciafa7.model.BaseModel" />
+		<mapping class="br.com.persistenciafa7.model.Campeonato" />
+		<mapping class="br.com.persistenciafa7.model.Cidade" />
+		<mapping class="br.com.persistenciafa7.model.Conquista" />
+		<mapping class="br.com.persistenciafa7.model.Estadio" />
+		<mapping class="br.com.persistenciafa7.model.Estado" />
+		<mapping class="br.com.persistenciafa7.model.Jogador" />
+		<mapping class="br.com.persistenciafa7.model.Partida" />
+		<mapping class="br.com.persistenciafa7.model.Pessoa" />
+		<mapping class="br.com.persistenciafa7.model.Tecnico" />
+		<mapping class="br.com.persistenciafa7.model.Time" />
+		
+
+	</session-factory>
+
+</hibernate-configuration>
