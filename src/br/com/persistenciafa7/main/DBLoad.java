@@ -48,44 +48,40 @@ public class DBLoad {
 	 * @param cidade
 	 */
 	private static void insereEstadosCidadesEstadiosTimesCascade(String strEstado, String nomeCidade) {
-		String[] estadoArr = strEstado.split("\\W");
-		
-		Estado estado = new Estado(estadoArr[0], estadoArr[1]);
-		Cidade  cidade = new Cidade(nomeCidade, estado);
-		
-		Estadio castelcao = new Estadio("Castelão", 30000, cidade);
-		Estadio pici = new Estadio("Pici", 29000, cidade);
+		String[] estadoArray = strEstado.split("-");
+
+		Estado estado = new Estado(estadoArray[0], estadoArray[1]);
+		Cidade cidade = new Cidade(nomeCidade, estado);
+
+		Estadio castelao = new Estadio("Castelão", 60000, cidade);
+		Estadio pici = new Estadio("Pici", 15000, cidade);
 
 		cidade.addEstadio(pici);
-		cidade.addEstadio(castelcao);
-		
+		cidade.addEstadio(castelao);
+
 		estado.addCidade(cidade);
-		
-		Time f =  new Time("Fortaleza", cidade, castelcao);
-		Time c =  new Time("Ceará", cidade, pici);
-		
-		cidade.setTimes(Arrays.asList(new Time[]{f,c}));
+
+		Time f = new Time("Fortaleza", cidade, castelao);
+		Time c = new Time("Ceará", cidade, pici);
+
+		cidade.setTimes(Arrays.asList(new Time[] { f, c }));
 
 		session.save(estado);
 	}
 	
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
-//		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("JPA_PU");
-//		entityManagerFactory.createEntityManager();
-		
 		session = HibernateUtil.getHibernateSession();
-		
 		session.beginTransaction();
+
 		insertCampeonatos("Brasileiro", "Copa do Brasil", "Libertadores");
-		
+
 		insereEstadosCidadesEstadiosTimesCascade("Ceará-CE", "Fortaleza");
-		
+
 		Collection<Time> times = session.createCriteria(Time.class).list();
-		
 		inserePessoasNosTimes(times);
+
 		session.getTransaction().commit();
-		
 	}
 
 	/**
@@ -100,13 +96,13 @@ public class DBLoad {
 		List<Pessoa> pessoas = new ArrayList<>(11);
 		Pessoa p = null;
 		for (Time time : times) {
-			for (int i = 0; i < 11; i++) {
+			for (int i = 1; i <= 11; i++) {
 				p = new Jogador("jogador_" + i + "_" + time.getNome(), "Posicao" + i , time);
 				session.save(p);
 				pessoas.add(p);
 			}
 				
-			p = new Tecnico("Tecnico do" + time.getNome(), "Time de 3º divisão", time);
+			p = new Tecnico("Tecnico do " + time.getNome(), " Time de 3º divisão", time);
 			session.save(p);
 			pessoas.add(p);
 			

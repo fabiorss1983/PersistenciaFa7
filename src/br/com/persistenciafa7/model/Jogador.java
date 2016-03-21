@@ -32,7 +32,7 @@ public class Jogador extends Pessoa {
 	public Jogador(String nome, String posicao, Time time) {
 		this.nome = nome;
 		this.posicao = posicao;
-		this.time = time;
+		this.time  = time;
 	}
 
 	public String getPosicao() {

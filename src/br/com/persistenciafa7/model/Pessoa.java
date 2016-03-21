@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
 				valueColumnName="next_val",	
 				pkColumnValue="id_pessoa", 
 				allocationSize=1)
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Pessoa extends BaseModel {
 	
 	private static final long serialVersionUID = 6L;
