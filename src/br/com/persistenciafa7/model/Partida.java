@@ -47,12 +47,10 @@ public class Partida extends BaseModel {
 	@Basic(optional = false)
 	private Date data ;
 	
-	@Column(name="gols_mantande")
-	@Basic(optional = false)
+	@Column(name="gols_mandante")
 	private Integer golsMandante;
 	
 	@Column(name="gols_visitante")
-	@Basic(optional = false)
 	private Integer golsVisitante;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
