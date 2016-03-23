@@ -26,6 +26,11 @@ public class Tecnico extends Pessoa {
 		this.especializacao = especializacao;
 		this.time = time;
 	}
+	
+	public Tecnico() {
+	}
+	
+	
 
 	public String getEspecializacao() {
 		return especializacao;

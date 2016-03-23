@@ -69,6 +69,11 @@ public class DBLoad {
 		session.save(estado);
 	}
 	
+	
+	/**
+	 * Roteiro de teste PASSO #1
+	 * @param args
+	 */
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		session = HibernateUtil.getHibernateSession();
@@ -95,9 +100,18 @@ public class DBLoad {
 	private static void inserePessoasNosTimes(Collection<Time> times) {
 		List<Pessoa> pessoas = new ArrayList<>(11);
 		Pessoa p = null;
+		
 		for (Time time : times) {
-			for (int i = 1; i <= 11; i++) {
-				p = new Jogador("jogador_" + i + "_" + time.getNome(), "Posicao" + i , time);
+			for (int i = 1; i <= 18; i++) {
+				int posicao = i;
+				String prefixoNome = "jogador";
+				
+				if(i > 11) {
+					posicao -= 11;
+					prefixoNome += "_reserva";
+				}
+				
+				p = new Jogador(prefixoNome + i + "_" + time.getNome(), "Posicao" + posicao , time);
 				session.save(p);
 				pessoas.add(p);
 			}

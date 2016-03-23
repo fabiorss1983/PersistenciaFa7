@@ -26,7 +26,6 @@ import javax.persistence.TableGenerator;
 public class Time extends BaseModel {
 
 	private static final long serialVersionUID = 5L;
-
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="TIME_GEN")

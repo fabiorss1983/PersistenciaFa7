@@ -35,6 +35,9 @@ public class Jogador extends Pessoa {
 		this.time  = time;
 	}
 
+	public Jogador() {
+	}
+
 	public String getPosicao() {
 		return posicao;
 	}

@@ -1,6 +1,6 @@
 package br.com.persistenciafa7.dao;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.hibernate.Session;
 
@@ -35,7 +35,7 @@ public class GenericDao {
      * 
      * @param bm
      */
-    public void salvar(BaseModel bm){
+    public void saveOrUpdate(BaseModel bm) {
     	session.saveOrUpdate(bm);
     }
     
@@ -62,7 +62,7 @@ public class GenericDao {
      * 
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
-	public List<BaseModel> listarTodos(Class bm){
+	public Collection<BaseModel> listarTodos(Class bm){
     	return session.createQuery("from "+bm.getName()+" e where e.isAtivo = true").list();
     }
     
